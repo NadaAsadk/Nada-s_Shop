@@ -1,0 +1,15 @@
+.nav-link.active{
+    border-bottom: 3px solid palevioletred;
+    width:fit-content;
+    font-weight: 700;
+    transition: 0s;
+}
+
+svg{
+    width:30px;
+    fill:palevioletred;
+    
+}
+.logo a{
+    color:palevioletred;
+}
