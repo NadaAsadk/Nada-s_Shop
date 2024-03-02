@@ -37,7 +37,7 @@ export default function Categories() {
      <div className="categories">
           {
             categories.map(category =>
-              <div className="category"> 
+              <div className="category" key={category._id}> 
                   <img src={category.image.secure_url} />
                   <p>{category.name}</p>
                </div>

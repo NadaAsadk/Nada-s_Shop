@@ -15,15 +15,36 @@ body{
     justify-content: center;
     padding:10px;
     border-radius: 20px;
-    width:calc((100% - 40px) / 3);
+    width:calc((100% - 40px) / 4);
     background-color: rgb(255, 231, 235);
   }
- 
+ .category img{
+    width:70%;
+ }
   p{
     text-align: center;
     padding:10px;
     border-radius: 10px;
     background-color: pink;
   }
-
-  
+  @media screen and (max-width:1000px) {
+    .category{
+        
+        width:calc((100% - 40px) / 3);
+        
+      }
+  }
+  @media screen and (max-width:700px) {
+    .category{
+        
+        width:calc((100% - 40px) / 2);
+        
+      }
+  }
+  @media screen and (max-width:300px) {
+    .category{
+        
+        width:calc((100% - 40px) / 1);
+        
+      }
+  }
