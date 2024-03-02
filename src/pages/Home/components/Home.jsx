@@ -1,7 +1,10 @@
 import React from 'react'
-
+import image from './image.png'
+import styles from './Home.module.css'
 export default function Home() {
   return (
-    <div>Home</div>
+    <div>
+      <img src={image}/>
+    </div>
   )
 }

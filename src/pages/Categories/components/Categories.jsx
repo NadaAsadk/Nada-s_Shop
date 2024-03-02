@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import './Categories.module.css';
+import './Categories.css';
+import Loader from '../../../components/Loader/Loader';
 
 
 
@@ -17,6 +18,8 @@ export default function Categories() {
       setError('');
     } catch (error) {
       setError('error to load error');
+    } finally{
+      setLoader(false);
     }
 
 
@@ -25,7 +28,10 @@ export default function Categories() {
   useEffect(() => {
     getCategories();
   }, []);
-
+  if(loader)
+  {
+    return <Loader />
+  }
   var swiper = new Swiper(".mySwiper", {
     slidesPerView: 1,
     spaceBetween: 10,
