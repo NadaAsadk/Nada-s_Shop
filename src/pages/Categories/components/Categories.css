@@ -1,15 +1,29 @@
-.swiper {
+body{
+    overflow-x: hidden;
+}
+.categories {
     width: 100%;
-    height: 90vh;
-    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap:10px;
+    margin-top: 10px;
   }
-  
-  .swiper-slide img{
-    width:90%;
-    height: fit-content;
+  .category{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding:10px;
+    border-radius: 20px;
+    width:calc((100% - 40px) / 3);
+    background-color: rgb(255, 231, 235);
   }
-  .swiper-slide p{
+ 
+  p{
     text-align: center;
+    padding:10px;
+    border-radius: 10px;
+    background-color: pink;
   }
 
   
