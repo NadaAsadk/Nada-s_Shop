@@ -28,7 +28,6 @@ export default function Categories() {
   useEffect(() => {
     getCategories();
   }, []);
-  
   if (loader) {
     return <Loader />
   }
@@ -78,7 +77,42 @@ export default function Categories() {
   return (
     <>
     
-      <div className="swiper">
+      <swiper 
+      direction= {'horizontal'}
+      loop= {false}
+  
+      pagination= {{
+        type: 'progressbar',
+        clickable: true,
+      }}
+  
+      navigation= {{
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+        clickable: true,
+      }}
+  
+      slidesPerView= {4}
+      spaceBetween= {40}
+      breakpoints= {{
+        320: {
+          slidesPerView: 2,
+          spaceBetween: 20
+        },
+        480: {
+          slidesPerView: 3,
+          spaceBetween: 30
+        },
+        640: {
+          slidesPerView: 4,
+          spaceBetween: 40
+        },
+        1200: {
+          slidesPerView: 5,
+          spaceBetween: 50
+        }
+      }}
+      className={'swiper'}>
         <div className="swiper-wrapper">
           {categories.map(category =>
             <div className="swiper-slide">
@@ -92,7 +126,7 @@ export default function Categories() {
         <div className="swiper-pagination" />
         <div className="swiper-button-prev" />
         <div className="swiper-button-next" />
-      </div>
+      </swiper>
 
     </>
 
