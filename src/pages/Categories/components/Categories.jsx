@@ -18,7 +18,7 @@ export default function Categories() {
       setError('');
     } catch (error) {
       setError('error to load error');
-    } finally{
+    } finally {
       setLoader(false);
     }
 
@@ -28,8 +28,7 @@ export default function Categories() {
   useEffect(() => {
     getCategories();
   }, []);
-  if(loader)
-  {
+  if (loader) {
     return <Loader />
   }
   var swiper = new Swiper(".mySwiper", {
@@ -59,23 +58,15 @@ export default function Categories() {
       <div className="swiper-wrapper">
         {categories.map(category =>
           <div className="swiper-slide">
-
-            <div className="card" style={{ width: '18rem' }}>
-              <img src={category.image.secure_url} className="card-img-top" alt={category.name} />
-              <div className="card-body">
-                <p className="card-text">{category.name}</p>
-              </div>
-            </div>
+            <img src={category.image.secure_url} className="card-img-top" alt={category.name} />
+            <p className="card-text">{category.name}</p>
           </div>
 
         )}
-
-
       </div>
-      <div className="swiper-pagination" />
-    </div>
+
+      <div className="swiper-pagination" /></div>
 
 
-
-  )
+  );
 }
