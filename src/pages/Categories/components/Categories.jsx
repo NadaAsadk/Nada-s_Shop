@@ -2,8 +2,8 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import './Categories.css';
 import Loader from '../../../components/Loader/Loader';
-
-
+import Swiper from 'swiper/bundle';
+import 'swiper/css/bundle';
 
 
 export default function Categories() {
@@ -31,42 +31,73 @@ export default function Categories() {
   if (loader) {
     return <Loader />
   }
-  var swiper = new Swiper(".mySwiper", {
-    slidesPerView: 1,
-    spaceBetween: 10,
+ 
+  const swiper = new Swiper('.swiper', {
+    direction: 'horizontal',
+    loop: false,
+    slidesPerView: 5,
+
     pagination: {
-      el: ".swiper-pagination",
+      el: '.swiper-pagination',
       clickable: true,
     },
-    breakpoints: {
-      640: {
-        slidesPerView: 2,
-        spaceBetween: 20,
-      },
-      768: {
-        slidesPerView: 4,
-        spaceBetween: 40,
-      },
-      1024: {
-        slidesPerView: 5,
-        spaceBetween: 50,
-      },
-    },
-  });
-  return (
-    <div className="swiper-container mySwiper">
-      <div className="swiper-wrapper">
-        {categories.map(category =>
-          <div className="swiper-slide">
-            <img src={category.image.secure_url} className="card-img-top" alt={category.name} />
-            <p className="card-text">{category.name}</p>
-          </div>
 
-        )}
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+
+    scrollbar: {
+      el: '.swiper-scrollbar',
+    },
+    slidesPerView: 1,
+    spaceBetween: 10,
+    // Responsive breakpoints
+    breakpoints: {
+      // when window width is >= 320px
+      320: {
+        slidesPerView: 2,
+        spaceBetween: 20
+      },
+      // when window width is >= 480px
+      480: {
+        slidesPerView: 3,
+        spaceBetween: 30
+      },
+      // when window width is >= 640px
+      640: {
+        slidesPerView: 4,
+        spaceBetween: 40
+      },
+      // when window width is >= 1200px
+      1200: {
+        slidesPerView: 5,
+        spaceBetween: 50
+      }
+    }
+  });
+
+
+  return (
+    <>
+    
+      <div className="swiper">
+        <div className="swiper-wrapper">
+          {categories.map(category =>
+            <div className="swiper-slide">
+              <img src={category.image.secure_url} alt={category.name} />
+              <p>{category.name}</p>
+            </div>
+
+          )}
+
+        </div>
+        <div className="swiper-pagination" />
+        <div className="swiper-button-prev" />
+        <div className="swiper-button-next" />
       </div>
 
-      <div className="swiper-pagination" /></div>
-
+    </>
 
   );
 }

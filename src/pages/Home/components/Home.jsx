@@ -4,7 +4,7 @@ import styles from './Home.module.css'
 export default function Home() {
   return (
     <div>
-      <img src={image}/>
+      <img src={image}className={styles.images}/>
     </div>
   )
 }
