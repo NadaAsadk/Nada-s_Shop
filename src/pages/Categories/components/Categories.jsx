@@ -1,8 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { Swiper, SwiperSlide } from 'swiper/react';
 import './Categories.module.css';
-import 'swiper/css';
+
 
 
 
@@ -27,30 +26,50 @@ export default function Categories() {
     getCategories();
   }, []);
 
-
+  var swiper = new Swiper(".mySwiper", {
+    slidesPerView: 1,
+    spaceBetween: 10,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    breakpoints: {
+      640: {
+        slidesPerView: 2,
+        spaceBetween: 20,
+      },
+      768: {
+        slidesPerView: 4,
+        spaceBetween: 40,
+      },
+      1024: {
+        slidesPerView: 5,
+        spaceBetween: 50,
+      },
+    },
+  });
   return (
-    
-      <Swiper
-        spaceBetween={50}
-        slidesPerView={1}
-        onSlideChange={() => console.log('slide change')}
-        onSwiper={(swiper) => console.log(swiper)}
-      >
-
+    <div className="swiper-container mySwiper">
+      <div className="swiper-wrapper">
         {categories.map(category =>
-                  <SwiperSlide>
+          <div className="swiper-slide">
 
-          <div className="card" style={{ width: '18rem' }}>
-            <img src={category.image.secure_url} className="card-img-top" alt={category.name} />
-            <div className="card-body">
-              <p className="card-text">{category.name}</p>
+            <div className="card" style={{ width: '18rem' }}>
+              <img src={category.image.secure_url} className="card-img-top" alt={category.name} />
+              <div className="card-body">
+                <p className="card-text">{category.name}</p>
+              </div>
             </div>
           </div>
-          </SwiperSlide>
 
         )}
-      </Swiper>
 
-    
+
+      </div>
+      <div className="swiper-pagination" />
+    </div>
+
+
+
   )
 }
