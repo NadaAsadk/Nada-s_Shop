@@ -28,6 +28,7 @@ export default function Categories() {
   useEffect(() => {
     getCategories();
   }, []);
+  
   if (loader) {
     return <Loader />
   }
