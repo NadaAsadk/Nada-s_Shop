@@ -2,7 +2,7 @@
     background-color: pink;
     height: 100vh;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
 }
 .images{
     width:100%;   
