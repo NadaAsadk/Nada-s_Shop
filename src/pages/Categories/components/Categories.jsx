@@ -2,8 +2,6 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import './Categories.css';
 import Loader from '../../../components/Loader/Loader';
-import Swiper from 'swiper/bundle';
-import 'swiper/css/bundle';
 
 
 export default function Categories() {
@@ -28,6 +26,7 @@ export default function Categories() {
   useEffect(() => {
     getCategories();
   }, []);
+
   if (loader) {
     return <Loader />
   }

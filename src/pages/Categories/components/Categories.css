@@ -5,6 +5,7 @@ body{
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap:10px;
     margin-top: 10px;
   }
@@ -15,7 +16,7 @@ body{
     justify-content: center;
     padding:10px;
     border-radius: 20px;
-    width:calc((100% - 40px) / 4);
+    width:calc((100% - 40px) / 5);
     background-color: rgb(255, 231, 235);
   }
  .category img{
@@ -26,6 +27,13 @@ body{
     padding:10px;
     border-radius: 10px;
     background-color: pink;
+  }
+  @media screen and (max-width:1500px) {
+    .category{
+        
+        width:calc((100% - 40px) / 4);
+        
+      }
   }
   @media screen and (max-width:1000px) {
     .category{
@@ -41,7 +49,7 @@ body{
         
       }
   }
-  @media screen and (max-width:300px) {
+  @media screen and (max-width:400px) {
     .category{
         
         width:calc((100% - 40px) / 1);

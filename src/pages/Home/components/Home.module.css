@@ -1,5 +1,9 @@
-.images{
-    width:100%;
+.home{
+    background-color: pink;
     height: 100vh;
-    
+    display: flex;
+    align-items: center;
+}
+.images{
+    width:100%;   
 }
