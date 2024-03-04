@@ -3,9 +3,11 @@ import Root from './routes/Root'
 import Home from './pages/Home/components/Home';
 import Categories from './pages/Categories/components/Categories';
 import Signin from './pages/Signin/components/Signin';
-import Signup from './pages/Signup/components/Signup';
+import Register from './pages/Register/components/Register';
 import {createBrowserRouter,RouterProvider,} from "react-router-dom";
 import NotFound from './pages/NotFound/NotFound';
+import Products from './pages/Products/components/Products';
+import ALL_Products from './pages/ALL_Products/components/ALL_Products';
 
 const router = createBrowserRouter([
   {
@@ -24,16 +26,25 @@ const router = createBrowserRouter([
         path:'/Signin',
         element:<Signin />,
       },
+      
       {
-        path:'/Signup',
-        element:<Signup />,
+        path:'/Register',
+        element:<Register />,
       },
+      {
+        path:'/Products',
+        element:<ALL_Products />,
+      },
+      
       {
         path:'*',
         element:<NotFound />,
       },
     ],
-  },
+  },{
+    path: "/products/category",
+    element: <Products />,
+  }
 ]);
 
 export default function App() {
