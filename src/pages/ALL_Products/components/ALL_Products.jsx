@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import './ALL_Products.css'
 import Loader from '../../../components/Loader/Loader';
+import { NavLink } from 'react-router-dom';
 
 export default function ALL_Products() {
     const [error, setError] = useState('');
@@ -35,13 +36,10 @@ export default function ALL_Products() {
             <div className='allProducts'>
                 {
                     allproducts.map(product =>
-                        <div className='product' key={product._id}>
+                        <NavLink to={`/productsdetails?product_id=${product._id}`} className='product' key={product._id} style={{textDecoration: 'none'}}>
                             <img src={product.mainImage.secure_url} />
                             <h2>{product.name}</h2>
-                            <p>{product.description}</p>
-                            <span>price: {product.price} $</span>
-
-                        </div>
+                        </NavLink>
 
                     )
                 }

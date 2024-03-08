@@ -8,6 +8,7 @@ import {createBrowserRouter,RouterProvider,} from "react-router-dom";
 import NotFound from './pages/NotFound/NotFound';
 import Products from './pages/Products/components/Products';
 import ALL_Products from './pages/ALL_Products/components/ALL_Products';
+import Product from './pages/Product/component/Product';
 
 const router = createBrowserRouter([
   {
@@ -34,16 +35,18 @@ const router = createBrowserRouter([
       {
         path:'/Products',
         element:<ALL_Products />,
+      },{
+        path: "/products/category",
+        element: <Products />,
+      },{
+        path: "/productsdetails",
+        element: <Product />,
       },
-      
       {
         path:'*',
         element:<NotFound />,
       },
     ],
-  },{
-    path: "/products/category",
-    element: <Products />,
   }
 ]);
 

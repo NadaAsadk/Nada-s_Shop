@@ -3,6 +3,7 @@ import Navbar from '../../../components/Navbar/Navbar';
 import axios from 'axios';
 import './Products.css'
 import Loader from '../../../components/Loader/Loader';
+import { NavLink } from 'react-router-dom';
 
 export default function Products() {
     const [error, setError] = useState('');
@@ -37,20 +38,23 @@ export default function Products() {
 
     return (
         <>
-            <Navbar />
+        <div className='catproduct'>
             <div className="products">
-                {products.map(product =>
-                    <div className='product' key={product._id}>
-                        <img src={product.mainImage.secure_url} />
-                        <h2>{product.name}</h2>
-                        <p>{product.description}</p>
-                        <span>price: {product.price} $</span>
+                
+            
+        {
+            (products.length > 0)?products.map(product =>
+                <NavLink to={`/productsdetails?product_id=${product._id}`} className='product' key={product._id} style={{textDecoration: 'none'}}>
+                    <img src={product.mainImage.secure_url} />
+                    <h2>{product.name}</h2>
+                </NavLink>
 
-                    </div>
-
-                )
-                }
-            </div>
+            ): <h2>There Are No Products To Display Yet..</h2>
+            
+        }
+            
+        </div>
+        </div>
         </>
 
     )

@@ -11,6 +11,7 @@ export default function Signin() {
   password: '',
   image: '',
 });
+
 const handleChange = (e) =>{
   const{name,value} = e.target;
   setUser({
@@ -18,47 +19,21 @@ const handleChange = (e) =>{
     [name]:value
   });
 };
-const handleImage = (e) =>{
-  const{name,files} = e.target;
-  setUser({
-    ...user,
-    [name]:files[0]
-  });
-};
-const validateData = async()=>{
-  const RegisterSchema = object({
-    userName:string().min(5).max(20).required(),
-    password:string().min(8).max(20).required(),
-  });
-  try {
-    await RegisterSchema.validate(user,{abortEarly:false});
-    return true;
-  } catch (error) {
-    console.log("validation error",error.errors);
-    setErrors(error.errors);
-    return false;
-  }
-};
+
   const handleSubmit = async(e)=>{
     e.preventDefault();
-    const formData = new FormData();
-    const validate = await validateData();
-    
-    
-    formData.append('userName',user.userName);
-    formData.append('password',user.password);
-
-    const {data} = await axios.post(`${import.meta.env.VITE_API}/auth/signup`,formData);
+    const {data} = await axios.post(`${import.meta.env.VITE_API}/auth/signin`, {user});
     console.log(user);
   };
   return (
-    <div>
+    <div className='main'>
+      <h1 className='firstLabel'>Sign In</h1>
       <form onSubmit={handleSubmit}>
       <label>user Name</label>
         <input type="text" value={user.userName} name="userName" onChange={handleChange}/>
         <label>password</label>
         <input type="text" value={user.password} name="password" onChange={handleChange}/>
-        <button type="submit">submit</button>
+        <button type="submit">Submit</button>
       </form>
     </div>
   )

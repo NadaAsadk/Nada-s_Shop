@@ -1,0 +1,62 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 20px;
+}
+
+.firstLabel {
+    color: palevioletred;
+    font-weight: 700;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 80%;
+    padding: 20px;
+    background-color: pink;
+    border-radius: 10px;
+    color: rgb(255, 255, 255);
+    text-transform: capitalize;
+    font-weight: 700;
+}
+
+label,
+input,
+button {
+    text-align: center;
+}
+
+button {
+    padding: 3px;
+    font-weight: 700;
+    color: rgb(255, 255, 255);
+    background-color: palevioletred;
+}
+
+.errors {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    gap: 2px;
+}
+
+.error {
+    text-align: left;
+    background-color: red;
+    color: rgb(255, 255, 255);
+    margin: 0;
+    width: 40%;
+}
+
+.error svg {
+    fill: rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+    margin-right: 10px;
+}
