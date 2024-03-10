@@ -14,7 +14,7 @@
     gap:10px;
     margin-top: 10px;
   }
-
+  
   .product {
     display: flex;
     flex-direction: column;
@@ -30,13 +30,24 @@
     height: 400px;
     border-radius: 10px;
 }
-
-h2{
+.empty{
+  height: 90vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+.empty h2{
     text-align: center;
     padding:10px;
     border-radius: 10px;
-    background-color: pink;
-  }
+    color:palevioletred;
+}
+.empty svg{
+  fill: palevioletred;
+  width: 200px;
+}
 @media screen and (max-width:1500px) {
     .product{
         

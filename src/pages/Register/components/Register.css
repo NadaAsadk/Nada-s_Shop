@@ -7,7 +7,6 @@
     align-items: center;
     margin-top: 20px;
     gap: 20px;
-
 }
 
 .firstLabel {
@@ -18,12 +17,12 @@
 form {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 10px;
     width: 80%;
     padding: 20px;
     background-color: pink;
     border-radius: 10px;
-    color: rgb(255, 255, 255);
+    color: palevioletred;
     text-transform: capitalize;
     font-weight: 700;
 }
@@ -32,6 +31,10 @@ label,
 input,
 button {
     text-align: center;
+}
+
+input{
+    border: 0px solid ;
 }
 
 button {
@@ -65,4 +68,35 @@ button {
     color: rgb(255, 255, 255);
     margin-right: 10px;
     width:20px;
+}
+
+@media screen and (max-width:1300px) {
+    form{
+        
+        width:50%;
+        
+    }
+}
+@media screen and (max-width:900px) {
+    form{
+        
+        width:60%;
+        
+    }
+}
+
+@media screen and (max-width:600px) {
+    form{
+        
+        width:70%;
+        
+    }
+}
+
+@media screen and (max-width:400px) {
+    form{
+        
+        width:80%;
+        
+    }
 }
