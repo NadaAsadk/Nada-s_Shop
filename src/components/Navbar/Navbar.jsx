@@ -1,8 +1,21 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './Navbar.css'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { UserContext } from '../../context/User';
+import axios from 'axios';
+import { CartItems } from '../../pages/Cart/components/Cart';
 
 export default function Navbar() {
+  const { userName, setUserName, setUserToken } = useContext(UserContext);
+
+  const navigate = useNavigate();
+  const logOut = () => {
+    localStorage.removeItem('userToken');
+    setUserToken(null);
+    setUserName(null);
+    navigate('/SignIn');
+  };
+ 
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
@@ -12,27 +25,61 @@ export default function Navbar() {
           <span className="navbar-toggler-icon" />
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-
-            <li className="nav-item">
-              <NavLink className="nav-link" aria-current="page" to='/'>Home</NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" aria-current="page" to='/products?page=1&limit=10'>Products</NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" aria-current="page" to='/Categories'>Categories</NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" aria-current="page" to='/Signin'>Sign in</NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" aria-current="page" to='/Register'>Register</NavLink>
-            </li>
 
 
+          {
+            userName ?
+              <>
 
-          </ul>
+                <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+
+                  <li className="nav-item">
+                    <NavLink className="nav-link" aria-current="page" to='/'>Home</NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink className="nav-link" aria-current="page" to='/products?page=1&limit=10'>Products</NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink className="nav-link" aria-current="page" to='/Categories'>Categories</NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink className="nav-link" aria-current="page" to='/Cart'>Cart <span><CartItems /></span></NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <button onClick={logOut}>Log Out</button>
+                  </li>
+                </ul>
+                <p>Welcome {userName}</p>
+
+
+              </>
+              :
+              <>
+                <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+
+                  <li className="nav-item">
+                    <NavLink className="nav-link" aria-current="page" to='/'>Home</NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink className="nav-link" aria-current="page" to='/products?page=1&limit=10'>Products</NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink className="nav-link" aria-current="page" to='/Categories'>Categories</NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink className="nav-link" aria-current="page" to='/Signin'>Sign in</NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink className="nav-link" aria-current="page" to='/Register'>Register</NavLink>
+                  </li>
+                </ul>
+              </>
+          }
+
+
+
+
+
 
         </div>
       </div>

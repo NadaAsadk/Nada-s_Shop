@@ -1,0 +1,104 @@
+.all{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0px 20px;
+
+}
+.header {
+    padding:20px 0px;
+    width:100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+}
+.header h2,.cart h2{
+    width:100%;
+    color:palevioletred;
+}
+
+.cart{
+    display: flex;
+    gap:20px;
+    flex-wrap: wrap;
+    height: fit-content;
+}
+
+
+.cart .oneproduct{
+    width:calc((100% - 60px ) / 4);
+}
+.cart .oneproduct img{
+    width:50%;
+    height:90%;
+}
+.header button{
+    color:white;
+    font-weight: 600;
+    font-size: large;
+    padding:10px;
+    background-color:pink ;
+    border: 3px solid palevioletred;
+    border-radius: 4px;
+}
+
+.qnty{
+    background-color:pink ;
+    border: 3px solid palevioletred;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    width:40%;
+}
+
+.cart .qnty button{
+    border:0px;
+    background-color: transparent;
+    padding: 0px;
+    box-sizing: content-box;
+    width:50%;
+}
+
+.qnty svg{
+    box-sizing: content-box;
+    width:calc(100% / 3);
+}
+.cart span{
+    padding:0px;
+    color:palevioletred;
+}
+
+.qnty span{
+    width:calc(100% / 3);
+    text-align: center;
+    border-left: 3px solid palevioletred;
+    border-right: 3px solid palevioletred;
+    color:palevioletred;
+    padding:10px;
+}
+button svg{
+    fill:white;
+}
+
+@media screen and (max-width:1500px) {
+    .cart .oneproduct{
+        
+        width:calc((100% - 40px) / 3);
+        
+      }
+  }
+  @media screen and (max-width:1000px) {
+    .cart .oneproduct{
+        
+        width:calc((100% - 20px) / 2);
+        
+      }
+  }
+  @media screen and (max-width:600px) {
+    .cart .oneproduct{
+        
+        width:calc(100%);
+        
+      }
+  }
+ 

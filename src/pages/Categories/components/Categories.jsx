@@ -11,9 +11,10 @@ export default function Categories() {
   const [products, setProducts] = useState([]);
   const [error, setError] = useState('');
   const [loader, setLoader] = useState(true);
+  
   const getCategories = async () => {
     try {
-      const { data } = await axios.get(`${import.meta.env.VITE_API}/categories/active?page=1&limit=10`);
+      const { data } = await axios.get(`/categories/active?page=1&limit=10`);
       setCategories(data.categories);
       setError('');
     } catch (error) {

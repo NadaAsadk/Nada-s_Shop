@@ -25,6 +25,7 @@ form {
     color: palevioletred;
     text-transform: capitalize;
     font-weight: 700;
+    z-index: 10;
 }
 
 label,
@@ -37,10 +38,18 @@ input{
     border: 0px solid ;
 }
 
-button {
+form button {
+    padding: 3px;
+    font-weight: 700;
+    color: palevioletred;
+    border: 2px solid palevioletred;
+    background-color: rgb(255, 255, 255);
+}
+form button:hover {
     padding: 3px;
     font-weight: 700;
     color: rgb(255, 255, 255);
+    border: 2px solid rgb(255, 255, 255);
     background-color: palevioletred;
 }
 
@@ -70,6 +79,9 @@ button {
     width:20px;
 }
 
+.hidden{
+    visibility: hidden;
+}
 @media screen and (max-width:1300px) {
     form{
         

@@ -2,29 +2,27 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import './Product.css'
 import Loader from '../../../components/Loader/Loader';
-import { NavLink } from 'react-router-dom';
-import Navbar from '../../../components/Navbar/Navbar';
+import { FaCartPlus } from "react-icons/fa";
+import { Bounce, toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 export default function Product() {
-    const [error, setError] = useState('');
     const [Images, setImages] = useState([]);
     const [loader, setLoader] = useState(true);
-
     const URL = new URLSearchParams(window.location.search);
     const id = URL.get('product_id');
-    console.log(id);
     const [product, setProduct] = useState([]);
+    const navigate = useNavigate();
 
 
     const getProducts = async () => {
         try {
-            const response = await axios.get(`${import.meta.env.VITE_API}/products/${id}`);
+            const response = await axios.get(`/products/${id}`);
             const data = response.data;
             setProduct(data.product);
             setImages(data.product.subImages);
-            console.log(data);
         } catch (error) {
-            setError('error to load error');
+            console.log(error);
         } finally {
             setLoader(false);
         }
@@ -40,10 +38,65 @@ export default function Product() {
         return <Loader />
     }
 
+    const addToCart = async (productId) => {
+        const token = localStorage.getItem('userToken');
+        if(token){
+            try {
+                const { data } = await axios.post(`/cart`, {
+                    productId
+                }, {
+                    headers: {
+                        Authorization: `Tariq__${token}`
+                    }
+                });
+                console.log(data);
+                toast.success('added one item to the cart', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                    transition: Bounce,
+                });
+            } catch (error) {
+                toast.error(error.response.data.message, {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                    transition: Bounce,
+                  });
+            }
+        }else{
+            toast.error('please sign In ', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                transition: Bounce,
+              });
+              navigate('/Signin');
+        }
+        
+
+
+    };
+
     return (
         <>
             <div className='all'>
-                <div className='oneproduct'>
+                <div className='oneproduct' >
                     <h2>{product.name}</h2>
                     <div className='spans'>
                         <span className='price'>price : ${product.price}</span>
@@ -61,11 +114,10 @@ export default function Product() {
 
                         </div>
                     </div>
-
-
                     <div className='details'>
                         <p>{product.description}</p>
                     </div>
+                    <button className="add" onClick={() => addToCart(product._id)}><span>Add to cart</span><FaCartPlus color='white' /></button>
                 </div>
             </div>
 
