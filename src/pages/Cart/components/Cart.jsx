@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './Cart.css'
 import { FaPlus } from "react-icons/fa";
 import { FaMinus } from "react-icons/fa";
@@ -10,8 +10,10 @@ import { IoCart } from "react-icons/io5";
 import { BsCartCheckFill } from "react-icons/bs";
 import { NavLink } from 'react-router-dom';
 import Loader from '../../../components/Loader/Loader';
+import { CartContext } from '../../../context/CartItems';
 
 export default function Cart() {
+  const {setCartItems} = useContext(CartContext);
   const [loader, setLoader] = useState(true);
   const [cartProducts, setCartProducts] = useState([]);
   const token = localStorage.getItem('userToken');
@@ -24,8 +26,8 @@ export default function Cart() {
           Authorization: `Tariq__${token}`
         }
       });
-
       setCartProducts(data.products);
+      setCartItems(data.products.length);
     } catch (error) {
       toast.error(error, {
         position: "top-right",

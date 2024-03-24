@@ -1,13 +1,15 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './Product.css'
 import Loader from '../../../components/Loader/Loader';
 import { FaCartPlus } from "react-icons/fa";
 import { Bounce, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { FaStar } from "react-icons/fa";
+import { CartContext } from '../../../context/CartItems';
 
 export default function Product() {
+    const {setCartItems} = useContext(CartContext);
     const [product, setProduct] = useState([]);
     const [Images, setImages] = useState([]);
     const [reviews, setReviews] = useState([]);
@@ -110,6 +112,7 @@ export default function Product() {
                         Authorization: `Tariq__${token}`
                     }
                 });
+                setCartItems(data.cart.products.length);
                 console.log(data);
                 toast.success('added one item to the cart', {
                     position: "top-right",

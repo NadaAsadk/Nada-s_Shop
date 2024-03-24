@@ -4,57 +4,25 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { UserContext } from '../../context/User';
 import axios from 'axios';
 import Loader from '../Loader/Loader';
+import { CartContext } from '../../context/CartItems';
   
 export default function Navbar() {
-  const [cartProducts, setCartProducts] = useState(0);
   const [loader, setLoader] = useState(true);
-  const { userName, setUserName, setUserToken} = useContext(UserContext);
+  const { setUserToken, userName, userImage } = useContext(UserContext);
+  const {CartItems}  = useContext(CartContext);
+ 
   const token = localStorage.getItem('userToken');
+
   const navigate = useNavigate();
+
   const logOut = () => {
     localStorage.removeItem('userToken');
     setUserToken(null);
     setUserName(null);
     navigate('/SignIn');
   };
-  const [userImage, setUserImage] = useState(null);
-    const getUserProfile = async () => {
-      if(token){
-        try {
-          const profile = await axios.get(`/user/profile`, {
-            headers: {
-                Authorization: `Tariq__${token}`
-            }
-        });
-        setUserImage(profile.data.user.image.secure_url);
-        } catch (error) {
-          
-        }finally{
-          setLoader(false);
-        }
-      }
-      setLoader(false);
-        
-    }
-    const getCart = async () => {
-      const token = localStorage.getItem('userToken');
-      const { data } = await axios.get(`/cart`, {
-        headers: {
-          Authorization: `Tariq__${token}`
-        }
-      });
-      setCartProducts(data.products.length);
-    }
-    useEffect(() => {
-      getCart();
-    }, []);
     
-    useEffect(() => {
-        getUserProfile();
-    }, {});
-    if (loader) {
-      return <Loader />
-    }
+  
   
  
   return (
@@ -85,7 +53,7 @@ export default function Navbar() {
                     <NavLink className="nav-link" aria-current="page" to='/Categories'>Categories</NavLink>
                   </li>
                   <li className="nav-item">
-                    <NavLink className="nav-link" aria-current="page" to='/Cart'>Cart <span>{cartProducts}</span></NavLink>
+                    <NavLink className="nav-link" aria-current="page" to='/Cart'>Cart <span>{CartItems}</span></NavLink>
                   </li>
                   <li className="nav-item">
                   <NavLink className="nav-link" aria-current="page" to='/Profile'><img src={userImage}/> {userName} Profile</NavLink>                  

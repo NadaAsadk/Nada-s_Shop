@@ -18,6 +18,7 @@ import ForgotPassword from './pages/ForgotPassword/ForgotPassword';
 import ResetPassword from './pages/ResetPassword/ResetPassword';
 import Profile from './pages/Profile/Profile';
 import Order from './pages/Order/Order';
+import CartContextProvider from './context/CartItems';
 
 
 
@@ -93,7 +94,9 @@ export default function App() {
     <>
     <ToastContainer/>
     <UserContextProvider>
-    <RouterProvider router={router} />
+      <CartContextProvider>
+      <RouterProvider router={router} />
+      </CartContextProvider>
     </UserContextProvider>
     </>
   )
