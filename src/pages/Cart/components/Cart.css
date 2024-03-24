@@ -12,7 +12,10 @@
     align-items: center;
 
 }
-.header h2,.cart h2{
+.row{
+    gap:5px;
+}
+.header h2,.cart h2, .header a{
     width:100%;
     color:palevioletred;
 }
@@ -32,9 +35,9 @@
     width:50%;
     height:90%;
 }
-.header button{
+.header button, .header a{
     color:white;
-    font-weight: 600;
+    text-align: center;
     font-size: large;
     padding:10px;
     background-color:pink ;
@@ -76,7 +79,7 @@
     color:palevioletred;
     padding:10px;
 }
-button svg{
+button svg, .header a svg{
     fill:white;
 }
 

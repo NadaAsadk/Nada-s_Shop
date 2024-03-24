@@ -62,9 +62,8 @@
 .all .subImages img:hover,.all .oneproduct .imagess img:hover{
     transform: scale(1.4);
 }
-.oneproduct h2{
+.oneproduct h2,.oneproduct h4{
     background-color:transparent;
-    font-size: xx-large;
     font-weight: 700;
     color: palevioletred;
 }
@@ -96,6 +95,65 @@ span{
 .allProducts svg{
     fill:white;
 }
+.reviews{
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    gap:4px;
+}
+.rating{
+    display: flex;
+    flex-direction: row;
+    gap:4px;
+    align-self: flex-start;
+    justify-self: flex-end;
+    margin-left: auto;
+    padding:10px;
+}
+.rating svg{
+    fill:gold;
+}
+.reviews h4 svg{
+    transition: 1s;
+}
+.reviews h4 svg:hover{
+    transform:rotate(90deg);
+    fill:gold;
+}
+.reviews .review{
+    display: flex;
+    align-items: center;
+    padding: 3px;
+    gap:7px;
+    border: 2px solid palevioletred;
+    border-radius: 10px;
+}
+.reviews .review:hover{
+    background-color: white;
+}
+.reviews .review img{
+    width:30px;
+    height: 30px;
+    border-radius: 30px;
+    
+}
+.addreview{
+    width:100%;
+    display: flex;
+    gap:30px;
+    flex-direction: column;
+}
+.addreview .addinreview{
+    width:100%;
+    display: flex;
+    gap:10px;
+}
+.addreview button{
+    color:white;
+}
+.addreview input{
+    width:80%;
+}
 
 @media screen and (max-width:11000px) {
     .oneproduct{
@@ -107,14 +165,14 @@ span{
 @media screen and (max-width:900px) {
     .oneproduct{
         
-        width:60%;
+        width:70%;
         
     }
 }
 @media screen and (max-width:600px) {
     .oneproduct{
         
-        width:70%;
+        width:90%;
         
     }
     

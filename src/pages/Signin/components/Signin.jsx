@@ -46,7 +46,7 @@ export default function Signin() {
     if (await validateData()) {
 
       try {
-        const { data } = await axios.post(`${import.meta.env.VITE_API}/auth/signin`, {
+        const { data } = await axios.post(`/auth/signin`, {
           email: user.email,
           password: user.password,
         });

@@ -16,6 +16,8 @@ import Cart from './pages/Cart/components/Cart';
 import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes';
 import ForgotPassword from './pages/ForgotPassword/ForgotPassword';
 import ResetPassword from './pages/ResetPassword/ResetPassword';
+import Profile from './pages/Profile/Profile';
+import Order from './pages/Order/Order';
 
 
 
@@ -46,6 +48,16 @@ export default function App() {
           path:'/Register',
           element:
           <Register />,
+        },
+        {
+          path:'/Profile',
+          element:
+          <Profile />,
+        },
+        {
+          path:'/order',
+          element:
+          <Order />,
         },
         {
           path:'/forgotPassword',

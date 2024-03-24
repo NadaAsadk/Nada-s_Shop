@@ -93,7 +93,7 @@ export default function ALL_Products({userName}) {
             <div className='allProducts'>
                 {
                     allproducts.map(product =>
-                        <div className='product' >
+                        <div className='product' key={product._id}>
                         <NavLink to={`/productsdetails?product_id=${product._id}`} key={product._id} style={{textDecoration: 'none'}}>
                             <img src={product.mainImage.secure_url} />
                             <h2>{product.name}</h2>

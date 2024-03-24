@@ -4,10 +4,12 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { UserContext } from '../../context/User';
 import axios from 'axios';
 import { CartItems } from '../../pages/Cart/components/Cart';
+import Loader from '../Loader/Loader';
 
 export default function Navbar() {
-  const { userName, setUserName, setUserToken } = useContext(UserContext);
-
+  const [loader, setLoader] = useState(true);
+  const { userName, setUserName, setUserToken} = useContext(UserContext);
+  const token = localStorage.getItem('userToken');
   const navigate = useNavigate();
   const logOut = () => {
     localStorage.removeItem('userToken');
@@ -15,6 +17,34 @@ export default function Navbar() {
     setUserName(null);
     navigate('/SignIn');
   };
+  const [userImage, setUserImage] = useState(null);
+    const getUserProfile = async () => {
+      if(token){
+        try {
+          const profile = await axios.get(`/user/profile`, {
+            headers: {
+                Authorization: `Tariq__${token}`
+            }
+        });
+        setUserImage(profile.data.user.image.secure_url);
+        console.log(profile);
+        } catch (error) {
+          
+        }finally{
+          setLoader(false);
+        }
+      }
+      setLoader(false);
+        
+    }
+    
+    useEffect(() => {
+        getUserProfile();
+    }, {});
+    if (loader) {
+      return <Loader />
+    }
+  
  
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -24,13 +54,14 @@ export default function Navbar() {
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon" />
         </button>
+        <NavLink className="nav-link" aria-current="page" to='/Profile'><p><img src={userImage}/> {userName} Profile</p></NavLink>                  
+
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
 
 
           {
             userName ?
-              <>
-
+              <div className='info'>
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
 
                   <li className="nav-item">
@@ -49,10 +80,8 @@ export default function Navbar() {
                     <button onClick={logOut}>Log Out</button>
                   </li>
                 </ul>
-                <p>Welcome {userName}</p>
 
-
-              </>
+              </div>
               :
               <>
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
