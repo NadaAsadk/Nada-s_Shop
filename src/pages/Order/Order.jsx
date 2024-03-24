@@ -35,10 +35,10 @@ export default function Order() {
     useEffect(() => {
         getCart();
     }, []);
-    const [coupon , setcoupon] = useState([]);
-    
-    const getCoupons = async()=>{
-        const all = await axios.get(`/coupon`,{headers:{Authorization : `Tariq__${token}`}});
+    const [coupon, setcoupon] = useState([]);
+
+    const getCoupons = async () => {
+        const all = await axios.get(`/coupon`, { headers: { Authorization: `Tariq__${token}` } });
         setcoupon(all.coupons);
         console.log(all);
     }
@@ -60,11 +60,18 @@ export default function Order() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const {data} = await axios.post(`/order`, 
-            order,{
-            headers: {
-                Authorization: `Tariq__${token}`
-            }});
+            const { data } = await axios.post(`/order`,
+                order, {
+                headers: {
+                    Authorization: `Tariq__${token}`
+                }
+            });
+            setOrder({
+                couponName: '',
+                address: '',
+                phone: '',
+            });
+            getCart();
             toast.success('order done successfully', {
                 position: "top-right",
                 autoClose: 5000,
@@ -76,6 +83,7 @@ export default function Order() {
                 theme: "dark",
                 transition: Bounce,
             });
+            
         } catch (error) {
             console.log(error);
             toast.error(error.message, {
@@ -98,7 +106,7 @@ export default function Order() {
     return (
         <div className="mainOrder">
             <div className='Ordercart'>
-            <h2>Your Cart</h2>
+                <h2>Your Cart</h2>
                 <Swiper
                     effect={'coverflow'}
                     grabCursor={false}
