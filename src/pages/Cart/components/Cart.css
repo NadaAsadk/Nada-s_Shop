@@ -2,7 +2,7 @@
     display: flex;
     flex-wrap: wrap;
     padding: 0px 20px;
-
+    height: fit-content;
 }
 .header {
     padding:20px 0px;
@@ -19,7 +19,9 @@
     width:100%;
     color:palevioletred;
 }
-
+.header .info{
+    width:100%;
+}
 .cart{
     display: flex;
     gap:20px;

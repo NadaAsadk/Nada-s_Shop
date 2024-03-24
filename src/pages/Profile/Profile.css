@@ -2,21 +2,22 @@
     display: flex;
     flex-direction: column;
     width:100%;
-    height: 100vh;
+    height: fit-content;
     position: relative;
     justify-content: center;
     align-items: center;
     background: url('./cover.png');
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size:contain ;
     background-position-x: center;
 }
 .mainprofile{
+    margin-top: 20px;
+    margin-bottom: 20px;
     display: flex;
     flex-direction: column;
     padding:20px;
     width:70%;
-    height: 80%;
     background-color: rgba(216, 112, 147, 0.88);
     border-radius: 30px;
     border: 2px solid palevioletred;
@@ -24,6 +25,10 @@
 }
 .mainprofile p{
     color:white;
+    font-weight: 400;
+}
+.mainprofile h2{
+    text-align: left;
 }
 .Profile{
     display: flex;
@@ -44,9 +49,45 @@
     width:200px;
     height: 200px;
     border-radius: 200px;
+    border: 10px solid #128F8B;
 }
-.Orders{
 
+.Orders .order{
+    background-color: rgba(216, 112, 147, 0.242);
+    border: 2px solid white;
+    border-radius: 20px;
+    padding:5px;
+    margin-bottom: 10px;
+}
+.order .first{
+    display: flex;
+    flex-direction: row;
+    width:100%;
+    position: relative;
+}
+.order .first button{
+    position: absolute;
+    right: 0;
+    border: 0;
+    width:30px;
+    height: 30px;
+    background-color: transparent;
+}
+.order .first svg{
+    position: absolute;
+    right: 0;
+    width: 30px;
+    height: 30px;
+}
+.Ordercart .order .firstinfo{
+    padding:10px;
+}
+.order .mySwiper .info{
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 
 @media screen and (max-width:700px) {
@@ -54,4 +95,14 @@
         width:100px;
         height: 100px;
     }
+}
+@media screen and (max-width:700px) {
+    .mainprofile{
+        width:90%;
+    }
+    .swiper-slide {
+        width: 200px;
+        height: 200px;
+       
+      }
 }

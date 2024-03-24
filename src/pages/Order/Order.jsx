@@ -60,11 +60,12 @@ export default function Order() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const {data} = await axios.post(`/order`, order,{
+            const {data} = await axios.post(`/order`, 
+            order,{
             headers: {
                 Authorization: `Tariq__${token}`
             }});
-            toast.success(data, {
+            toast.success('order done successfully', {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -96,9 +97,8 @@ export default function Order() {
     }
     return (
         <div className="mainOrder">
-            <h2>Your Cart</h2>
             <div className='Ordercart'>
-                
+            <h2>Your Cart</h2>
                 <Swiper
                     effect={'coverflow'}
                     grabCursor={false}
@@ -115,14 +115,13 @@ export default function Order() {
                     modules={[EffectCoverflow, Pagination]}
                     className="mySwiper"
                 >
-                    <h2>Your Cart</h2>
                     {(cart.length > 0) ? cart.map(product =>
                         <SwiperSlide>
                             <span>{product.details.name}</span>
                             <img src={product.details.mainImage.secure_url} />
                             <span>quantity: {product.quantity}</span>
                         </SwiperSlide>
-                    ) : <></>}
+                    ) : <p>Nothing in your cart to order</p>}
 
 
                 </Swiper>

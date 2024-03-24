@@ -3,10 +3,10 @@ import './Navbar.css'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { UserContext } from '../../context/User';
 import axios from 'axios';
-import { CartItems } from '../../pages/Cart/components/Cart';
 import Loader from '../Loader/Loader';
-
+  
 export default function Navbar() {
+  const [cartProducts, setCartProducts] = useState(0);
   const [loader, setLoader] = useState(true);
   const { userName, setUserName, setUserToken} = useContext(UserContext);
   const token = localStorage.getItem('userToken');
@@ -27,7 +27,6 @@ export default function Navbar() {
             }
         });
         setUserImage(profile.data.user.image.secure_url);
-        console.log(profile);
         } catch (error) {
           
         }finally{
@@ -37,6 +36,18 @@ export default function Navbar() {
       setLoader(false);
         
     }
+    const getCart = async () => {
+      const token = localStorage.getItem('userToken');
+      const { data } = await axios.get(`/cart`, {
+        headers: {
+          Authorization: `Tariq__${token}`
+        }
+      });
+      setCartProducts(data.products.length);
+    }
+    useEffect(() => {
+      getCart();
+    }, []);
     
     useEffect(() => {
         getUserProfile();
@@ -47,6 +58,7 @@ export default function Navbar() {
   
  
   return (
+ 
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
         <a className="navbar-brand" href="#">
@@ -54,14 +66,13 @@ export default function Navbar() {
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon" />
         </button>
-        <NavLink className="nav-link" aria-current="page" to='/Profile'><p><img src={userImage}/> {userName} Profile</p></NavLink>                  
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
 
 
           {
             userName ?
-              <div className='info'>
+             
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
 
                   <li className="nav-item">
@@ -74,14 +85,16 @@ export default function Navbar() {
                     <NavLink className="nav-link" aria-current="page" to='/Categories'>Categories</NavLink>
                   </li>
                   <li className="nav-item">
-                    <NavLink className="nav-link" aria-current="page" to='/Cart'>Cart <span><CartItems /></span></NavLink>
+                    <NavLink className="nav-link" aria-current="page" to='/Cart'>Cart <span>{cartProducts}</span></NavLink>
+                  </li>
+                  <li className="nav-item">
+                  <NavLink className="nav-link" aria-current="page" to='/Profile'><img src={userImage}/> {userName} Profile</NavLink>                  
                   </li>
                   <li className="nav-item">
                     <button onClick={logOut}>Log Out</button>
                   </li>
                 </ul>
 
-              </div>
               :
               <>
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
@@ -104,12 +117,6 @@ export default function Navbar() {
                 </ul>
               </>
           }
-
-
-
-
-
-
         </div>
       </div>
     </nav>

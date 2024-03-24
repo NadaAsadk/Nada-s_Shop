@@ -11,24 +11,6 @@ import { BsCartCheckFill } from "react-icons/bs";
 import { NavLink } from 'react-router-dom';
 import Loader from '../../../components/Loader/Loader';
 
-export function CartItems() {
-  const [cartProducts, setCartProducts] = useState(0);
-  const getCart = async () => {
-    const token = localStorage.getItem('userToken');
-    const { data } = await axios.get(`/cart`, {
-      headers: {
-        Authorization: `Tariq__${token}`
-      }
-    });
-    setCartProducts(data.products.length);
-  }
-
-  useEffect(() => {
-    getCart();
-  }, []);
-  return cartProducts;
-}
-
 export default function Cart() {
   const [loader, setLoader] = useState(true);
   const [cartProducts, setCartProducts] = useState([]);
@@ -60,10 +42,18 @@ export default function Cart() {
       setLoader(false);
     }
   }
+  const finalPrice = () =>{
+    let sum=0;
+    for(let i = 0;i<cartProducts.length;i++){
+      sum+=(cartProducts[i].details.finalPrice * cartProducts[i].quantity);
+    }
+    return sum;
+  }
 
   useEffect(() => {
     getCart();
   }, []);
+  
 
   const incraseQuantity = async (productId) => {
     const add = await axios.patch(`/cart/incraseQuantity`, {
@@ -170,7 +160,10 @@ export default function Cart() {
   return (
     <div className='all'>
       <div className='header'>
+        <div className='info'>
         <h2>Cart <IoCart /></h2>
+          <p>Total price: {finalPrice()} $</p>
+        </div>
         <div className='row'>
         <button onClick={() => clearCart()}>clear Cart <MdRemoveShoppingCart /></button>
        <NavLink to='/order'>Check Out <BsCartCheckFill /></NavLink>
