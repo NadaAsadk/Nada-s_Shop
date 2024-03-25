@@ -165,6 +165,7 @@ export default function Product() {
                     <div className='spans'>
                         <span className='price'>price : ${product.price}</span>
                         <span>stock : {product.stock}</span>
+                        <span>discount : {product.discount} %</span>
                     </div>
                     <div className='imagess'>
                         <img src={product.mainImage.secure_url} />

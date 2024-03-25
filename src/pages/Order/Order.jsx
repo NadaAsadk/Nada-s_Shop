@@ -25,7 +25,7 @@ export default function Order() {
                     Authorization: `Tariq__${token}`
                 }
             });
-
+            console.log(data.products);
             setCartProducts(data.products);
         } catch (error) {
             console.log(error);
@@ -129,7 +129,12 @@ export default function Order() {
                         <SwiperSlide>
                             <span>{product.details.name}</span>
                             <img src={product.details.mainImage.secure_url} />
+                            <span>price: {product.details.price} $</span>
+                            <span>discount: {product.details.discount} %</span>
+                            <span>finalPrice: {product.details.finalPrice} $</span>
                             <span>quantity: {product.quantity}</span>
+                            <span>total: {product.details.finalPrice * product.quantity} $</span>
+
                         </SwiperSlide>
                     ) : <p>Nothing in your cart to order</p>}
 

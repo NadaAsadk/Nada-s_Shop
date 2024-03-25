@@ -41,6 +41,7 @@ body {
   background-position: center;
   background-size: cover;
   background-color: pink;
+  opacity: 0.9;
   width: 300px;
   height: 400px;
   display: flex;
@@ -61,5 +62,6 @@ body {
 .swiper-slide span {
     width: 100%;
    text-align: left;
-   color:palevioletred;
+   color:white;
+   text-shadow:2px 3px 3px palevioletred;
   }

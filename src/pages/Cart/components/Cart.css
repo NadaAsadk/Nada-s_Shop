@@ -131,6 +131,14 @@
 button svg {
     fill: white;
 }
+.cart .oneproduct .discount{
+    color:red;
+    background-color: white;
+    width:100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 @media screen and (max-width:1500px) {
     .cart .oneproduct {

@@ -11,6 +11,7 @@ import { BsCartCheckFill } from "react-icons/bs";
 import { NavLink } from 'react-router-dom';
 import Loader from '../../../components/Loader/Loader';
 import { CartContext } from '../../../context/CartItems';
+import { AiFillFire } from "react-icons/ai";
 
 export default function Cart() {
   const { setCartItems } = useContext(CartContext);
@@ -27,6 +28,7 @@ export default function Cart() {
         }
       });
       setCartProducts(data.products);
+      console.log(data);
       setCartItems(data.products.length);
     } catch (error) {
       toast.error(error, {
@@ -177,11 +179,12 @@ export default function Cart() {
          
             <div className='oneproduct' key={product.details._id}>
             <h2>{product.details.name}</h2>
+            {(product.details.discount>0)?<h2 className='discount'><AiFillFire /> discount: {product.details.discount} %</h2>:<></>}
             <NavLink to={`/productsdetails?product_id=${product.details._id}`} key={product._id} style={{ textDecoration: 'none' }}>
             <img src={product.details.mainImage.secure_url} />
             </NavLink>
             <span>price: {product.details.price} $</span>
-            <span>total: {product.details.price * product.quantity} $</span>
+            <span>total: {product.details.finalPrice * product.quantity} $</span>
             <div className='qnty'>
               <button onClick={() => incraseQuantity(product.details.id)}><FaPlus color='palevioletred' /></button>
               <span>{product.quantity}</span>
