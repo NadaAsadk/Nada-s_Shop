@@ -25,6 +25,7 @@ export default function Product() {
 
 
     const getProducts = async () => {
+        setLoader(true);
         try {
             const response = await axios.get(`/products/${id}`);
             const data = response.data;
@@ -54,7 +55,6 @@ export default function Product() {
         const token = localStorage.getItem('userToken');
         if (token) {
             try {
-                console.log(id);
                 const addyourreview = await axios.post(`/products/${id}/review`,yourreview , {
                     headers: {
                         authorization: `Tariq__${token}`
@@ -62,7 +62,6 @@ export default function Product() {
                 });
                 getProducts();
             } catch (error) {
-                console.log(error);
                 toast.error(error.response.data.message, {
                     position: "top-right",
                     autoClose: 5000,
@@ -113,7 +112,6 @@ export default function Product() {
                     }
                 });
                 setCartItems(data.cart.products.length);
-                console.log(data);
                 toast.success('added one item to the cart', {
                     position: "top-right",
                     autoClose: 5000,
@@ -212,7 +210,7 @@ export default function Product() {
                         </div>
                         <div className='addinreview'>
                             <label>rating</label>
-                            <input type="text" value={yourreview.rating} name="rating" onChange={handleChange} />
+                            <input type="number" value={yourreview.rating} name="rating" onChange={handleChange} />
                         </div>
 
                         <button type="submit">add your review</button>

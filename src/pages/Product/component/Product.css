@@ -15,9 +15,8 @@
     padding:10px;
     border-radius: 20px;
     width:calc((100% - 40px) / 5);
-    background-color: rgb(255, 231, 235);
     width:80%;
-    box-shadow: 5px 3px 9px 5px rgb(153, 108, 116);
+    box-shadow: 5px 3px 9px 5px rgb(234, 199, 206);
 }
 .oneproduct img{
     width:70%;
@@ -60,7 +59,7 @@
     width: 90%;
 }
 .all .subImages img:hover,.all .oneproduct .imagess img:hover{
-    transform: scale(1.4);
+    transform: scale(1.2);
 }
 .oneproduct h2,.oneproduct h4{
     background-color:transparent;
@@ -68,14 +67,19 @@
     color: palevioletred;
 }
 
-span{
-    color:rgb(255, 255, 255);
+.all .oneproduct .spans span{
+    color: white;
+    font-size: larger;
+}
+.allProducts span{
+    color: palevioletred;
     font-size: larger;
 }
 
 .oneproduct button,.allProducts button{
     background-color: rgb(239, 121, 160);
     border:2px solid white;
+    color:white;
     border-radius: 4px;
     padding:10px;
     display: flex;
@@ -154,6 +158,12 @@ span{
 .addreview input{
     width:80%;
 }
+.review{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
 
 @media screen and (max-width:11000px) {
     .oneproduct{

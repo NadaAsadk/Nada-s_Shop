@@ -3,7 +3,7 @@
     background-color: palevioletred;
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-evenly;
     gap:5px;
@@ -29,4 +29,8 @@
 }
 .footer svg{
     fill:white;
+    width:20px;
+    height: 20px;
+    padding:0px;
+    box-sizing: content-box;
 }

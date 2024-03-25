@@ -13,7 +13,7 @@ import Loader from '../../../components/Loader/Loader';
 import { CartContext } from '../../../context/CartItems';
 
 export default function Cart() {
-  const {setCartItems} = useContext(CartContext);
+  const { setCartItems } = useContext(CartContext);
   const [loader, setLoader] = useState(true);
   const [cartProducts, setCartProducts] = useState([]);
   const token = localStorage.getItem('userToken');
@@ -44,10 +44,10 @@ export default function Cart() {
       setLoader(false);
     }
   }
-  const finalPrice = () =>{
-    let sum=0;
-    for(let i = 0;i<cartProducts.length;i++){
-      sum+=(cartProducts[i].details.finalPrice * cartProducts[i].quantity);
+  const finalPrice = () => {
+    let sum = 0;
+    for (let i = 0; i < cartProducts.length; i++) {
+      sum += (cartProducts[i].details.finalPrice * cartProducts[i].quantity);
     }
     return sum;
   }
@@ -55,7 +55,7 @@ export default function Cart() {
   useEffect(() => {
     getCart();
   }, []);
-  
+
 
   const incraseQuantity = async (productId) => {
     const add = await axios.patch(`/cart/incraseQuantity`, {
@@ -163,20 +163,23 @@ export default function Cart() {
     <div className='all'>
       <div className='header'>
         <div className='info'>
-        <h2>Cart <IoCart /></h2>
+          <h2>Cart <IoCart /></h2>
           <p>Total price: {finalPrice()} $</p>
         </div>
         <div className='row'>
-        <button onClick={() => clearCart()}>clear Cart <MdRemoveShoppingCart /></button>
-       <NavLink to='/order'>Check Out <BsCartCheckFill /></NavLink>
+          <button onClick={() => clearCart()}><span>Clear Cart</span><MdRemoveShoppingCart /></button>
+          <NavLink to='/order' style={{ textDecoration: 'none' }}>Check Out <BsCartCheckFill /></NavLink>
         </div>
-        
+
       </div>
       <div className="cart">
         {(cartProducts.length > 0) ? cartProducts.map(product =>
-          <div className='oneproduct' key={product.details._id}>
+         
+            <div className='oneproduct' key={product.details._id}>
             <h2>{product.details.name}</h2>
+            <NavLink to={`/productsdetails?product_id=${product.details._id}`} key={product._id} style={{ textDecoration: 'none' }}>
             <img src={product.details.mainImage.secure_url} />
+            </NavLink>
             <span>price: {product.details.price} $</span>
             <span>total: {product.details.price * product.quantity} $</span>
             <div className='qnty'>
@@ -186,8 +189,9 @@ export default function Cart() {
                 : <button onClick={(product.quantity < 0) ? () => deleteProduct(product.details.id) : () => decraseQuantity(product.details.id)}><FaMinus color='palevioletred' /></button>}
             </div>
             <button onClick={() => deleteProduct(product.details.id)}><FaTrashAlt color='palevioletred' /></button>
-
+            
           </div>
+
 
         ) :
           <>

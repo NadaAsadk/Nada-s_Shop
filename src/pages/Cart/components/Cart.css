@@ -1,109 +1,157 @@
-.all{
+.all {
     display: flex;
     flex-wrap: wrap;
     padding: 0px 20px;
+    width: 100%;
     height: fit-content;
 }
+
 .header {
-    padding:20px 0px;
-    width:100%;
+    padding: 20px 10px;
+    width: 100%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
 
 }
-.row{
-    gap:5px;
+
+.row {
+    gap: 5px;
 }
-.header h2,.cart h2, .header a{
-    width:100%;
-    color:palevioletred;
+
+.row button{
+    background-color: white;
+    
 }
-.header .info{
-    width:100%;
+.row button:hover, .row a:hover{
+    color:white;
+    background-color: palevioletred;
+
 }
-.cart{
+.row button:hover span, .row button:hover svg, .row a:hover svg{
+    fill:white;
+    color:white;
+}
+
+.header h2,
+.header a {
+    width: 100%;
+    color: palevioletred;
+    text-align: left;
+}
+
+.header .info {
+    width: 100%;
+}
+
+.cart {
     display: flex;
-    gap:20px;
+    gap: 20px;
     flex-wrap: wrap;
     height: fit-content;
+    width: 100%;
 }
 
 
-.cart .oneproduct{
-    width:calc((100% - 60px ) / 4);
+.cart .oneproduct {
+    gap: 5px;
+    width: calc((100% - 60px) / 4);
 }
-.cart .oneproduct img{
-    width:50%;
-    height:90%;
+
+.cart .oneproduct a {
+    width:100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
 }
-.header button, .header a{
-    color:white;
+
+.cart .oneproduct a img {
+    width: 90%;
+    height: 100%;
+}
+
+.header button,
+.header a {
+    color: palevioletred;
     text-align: center;
     font-size: large;
-    padding:10px;
-    background-color:pink ;
+    padding: 10px;
     border: 3px solid palevioletred;
     border-radius: 4px;
 }
 
-.qnty{
-    background-color:pink ;
+.header button svg,
+.header a svg {
+    fill: palevioletred;
+}
+
+.qnty {
+    background-color: pink;
     border: 3px solid palevioletred;
     border-radius: 4px;
     display: flex;
     justify-content: space-between;
-    width:40%;
+    width: 40%;
 }
 
-.cart .qnty button{
-    border:0px;
+.cart .qnty button {
+    border: 0px;
     background-color: transparent;
     padding: 0px;
     box-sizing: content-box;
-    width:50%;
+    width: 50%;
 }
 
-.qnty svg{
+.qnty svg {
     box-sizing: content-box;
-    width:calc(100% / 3);
-}
-.cart span{
-    padding:0px;
-    color:palevioletred;
+    width: calc(100% / 3);
 }
 
-.qnty span{
-    width:calc(100% / 3);
+.cart .header .row span{
+    padding: 0px;
+    color: palevioletred;
+}
+
+.cart span{
+    padding: 0px;
+    color: palevioletred;
+}
+
+.qnty span {
+    width: calc(100% / 3);
     text-align: center;
     border-left: 3px solid palevioletred;
     border-right: 3px solid palevioletred;
-    color:palevioletred;
-    padding:10px;
+    color: palevioletred;
+    padding: 10px;
 }
-button svg, .header a svg{
-    fill:white;
+
+button svg {
+    fill: white;
 }
 
 @media screen and (max-width:1500px) {
-    .cart .oneproduct{
-        
-        width:calc((100% - 40px) / 3);
-        
-      }
-  }
-  @media screen and (max-width:1000px) {
-    .cart .oneproduct{
-        
-        width:calc((100% - 20px) / 2);
-        
-      }
-  }
-  @media screen and (max-width:600px) {
-    .cart .oneproduct{
-        
-        width:calc(100%);
-        
-      }
-  }
- 
+    .cart .oneproduct {
+
+        width: calc((100% - 40px) / 3);
+
+    }
+}
+
+@media screen and (max-width:1000px) {
+    .cart .oneproduct {
+
+        width: calc((100% - 20px) / 2);
+
+    }
+}
+
+@media screen and (max-width:600px) {
+    .cart .oneproduct {
+
+        width: calc(100%);
+
+    }
+}

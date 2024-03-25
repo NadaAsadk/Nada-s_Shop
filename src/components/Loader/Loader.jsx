@@ -1,11 +1,11 @@
 import React from 'react'
-import styles from './Loader.module.css'
+import './Loader.css'
 
 export default function Loader() {
   return (
-    <div className={styles.overlay}>
-  <div className={styles.loader} />
-</div>
+    <div className='overlay'>
+      <div class="loader"></div>
+    </div>
 
   )
 }

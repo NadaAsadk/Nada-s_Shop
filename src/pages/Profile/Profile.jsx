@@ -4,6 +4,7 @@ import './Profile.css'
 import cover from './cover.png'
 import Loader from '../../components/Loader/Loader';
 import { useRef } from 'react';
+import { Bounce, toast } from 'react-toastify';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
@@ -42,16 +43,24 @@ export default function Profile() {
         setOrders(gorders.data.orders);
     }
     const cancelOrder = async (orderId) => {
-        console.log(orderId);
-        console.log(`/order/cancel/${orderId}`);
         const { data } = await axios.patch(`${import.meta.env.VITE_API}/order/cancel/${orderId}`,{},
             { headers: {
                 Authorization:`Tariq__${token}`
 
             }});
-        console.log(data);
-
+            toast.success('order canelled successfully', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                transition: Bounce,
+            });
         getOrders();
+        
     }
     useEffect(() => {
         getOrders();
@@ -88,11 +97,11 @@ export default function Profile() {
                                                     <p>finalPrice: {order.finalPrice} $</p>
                                                     <p>status: {order.status}</p>
                                                 </div>
-                                                <button onClick={() => cancelOrder(order._id)}><MdCancel fill="white" /></button>
-
+                                                {(order.status=='pending')?<button onClick={() => cancelOrder(order._id)}><MdCancel fill="white" /></button>:<></>}
+                                                <h2>Order's Products: </h2>
                                             </div>
 
-                                            <h2>Order's Products: </h2>
+                                        
                                             <Swiper
                                                 effect={'coverflow'}
                                                 grabCursor={false}
@@ -105,12 +114,12 @@ export default function Profile() {
                                                     modifier: 1,
                                                     slideShadows: true,
                                                 }}
-                                                pagination={false}
+                                                pagination={true}
                                                 modules={[EffectCoverflow, Pagination]}
                                                 className="mySwiper"
                                             >
                                                 {order.products.map(product =>
-                                                    <SwiperSlide key={product.id}>
+                                                    <SwiperSlide key={product.id} className='profileProduct'>
                                                         <p>{product.productId.name}</p>
                                                         <img src={product.productId.mainImage.secure_url} />
                                                         <div className='info'>

@@ -16,7 +16,7 @@
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;
-    padding:20px;
+    padding:10px;
     width:70%;
     background-color: rgba(216, 112, 147, 0.88);
     border-radius: 30px;
@@ -52,23 +52,28 @@
     border: 10px solid #128F8B;
 }
 
-.Orders .order{
+.Orders .Ordercart{
     background-color: rgba(216, 112, 147, 0.242);
     border: 2px solid white;
     border-radius: 20px;
-    padding:5px;
+    padding:0px;
     margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
 }
 .order .first{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width:100%;
+    padding: 20px;
     position: relative;
 }
 .order .first button{
     position: absolute;
     right: 0;
+    top:0;
     border: 0;
+    padding:2px;
     width:30px;
     height: 30px;
     background-color: transparent;
@@ -76,6 +81,7 @@
 .order .first svg{
     position: absolute;
     right: 0;
+    top:0;
     width: 30px;
     height: 30px;
 }
@@ -84,25 +90,57 @@
 }
 .order .mySwiper .info{
     width:100%;
-    display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
 }
-
-@media screen and (max-width:700px) {
+.order .profileProduct{
+    height: 100%;
+    display: flex;
+    
+    background-color:transparent;
+}
+.mainprofile .Orders .swiper-slide {
+    width: 90%;
+    height: 100%;
+  }
+@media screen and (max-width:900px) {
     .right img{
         width:100px;
         height: 100px;
     }
+    
+      .mainprofile .Orders .swiper-slide img {
+        display: block;
+        width: 150px;
+        height: 150px;
+      }
 }
 @media screen and (max-width:700px) {
     .mainprofile{
         width:90%;
     }
-    .swiper-slide {
-        width: 200px;
-        height: 200px;
-       
+    
+    .mainprofile .Orders .swiper-slide img {
+        display: block;
+        width: 100px;
+        height: 100px;
       }
-}
+
+    }
+
+    @media screen and (max-width:300px) {
+        .mainprofile{
+            width:90%;
+        }
+        
+          .mainprofile .Orders .swiper-slide img {
+            display: block;
+            width: 100px;
+            height: 100px;
+          }
+    
+        }

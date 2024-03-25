@@ -6,12 +6,14 @@ import { NavLink } from 'react-router-dom';
 import { FaCartPlus } from "react-icons/fa";
 import { Bounce, toast } from 'react-toastify';
 import { CartContext } from '../../../context/CartItems';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 
-export default function ALL_Products({userName}) {
-    const [error, setError] = useState('');
+export default function ALL_Products() {
+
     const [loader, setLoader] = useState(true);
     const [allproducts, setAllProducts] = useState([]);
-    const {setCartItems} = useContext(CartContext);
+    const { setCartItems } = useContext(CartContext);
 
 
     const getProducts = async () => {
@@ -20,7 +22,7 @@ export default function ALL_Products({userName}) {
             const data = response.data;
             setAllProducts(data.products);
         } catch (error) {
-            setError('error to load error');
+            console.log(error);
         } finally {
             setLoader(false);
         }
@@ -36,7 +38,7 @@ export default function ALL_Products({userName}) {
     }
     const addToCart = async (productId) => {
         const token = localStorage.getItem('userToken');
-        if(token){
+        if (token) {
             try {
                 const { data } = await axios.post(`/cart`, {
                     productId
@@ -70,9 +72,9 @@ export default function ALL_Products({userName}) {
                     progress: undefined,
                     theme: "dark",
                     transition: Bounce,
-                  });
+                });
             }
-        }else{
+        } else {
             toast.error('please sign In ', {
                 position: "top-right",
                 autoClose: 5000,
@@ -83,13 +85,14 @@ export default function ALL_Products({userName}) {
                 progress: undefined,
                 theme: "dark",
                 transition: Bounce,
-              });
-              navigate('/Signin');
+            });
+            navigate('/Signin');
         }
-        
+
 
 
     };
+   
 
 
     return (
@@ -98,16 +101,16 @@ export default function ALL_Products({userName}) {
                 {
                     allproducts.map(product =>
                         <div className='product' key={product._id}>
-                        <NavLink to={`/productsdetails?product_id=${product._id}`} key={product._id} style={{textDecoration: 'none'}}>
-                            <img src={product.mainImage.secure_url} />
-                            <h2>{product.name}</h2>
-                        </NavLink>
-                        <button onClick={() => addToCart(product._id)}><span>Add to cart</span><FaCartPlus color='white' /></button>
+                            <NavLink to={`/productsdetails?product_id=${product._id}`} key={product._id} style={{ textDecoration: 'none' }}>
+                                <img src={product.mainImage.secure_url} />
+                                <h2>{product.name}</h2>
+                            </NavLink>
+                            <button onClick={() => addToCart(product._id)}><span>Add to cart</span><FaCartPlus color='white' /></button>
                         </div>
-                        
+
                     )
                 }
-
+                
             </div>
         </>
     )

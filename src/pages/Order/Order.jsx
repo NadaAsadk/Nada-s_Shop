@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Bounce, toast } from 'react-toastify';
 import Loader from '../../components/Loader/Loader';
 import './Order.css'
@@ -9,8 +9,10 @@ import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 
 import { EffectCoverflow, Pagination } from 'swiper/modules';
+import { CartContext } from '../../context/CartItems';
 
 export default function Order() {
+    const { setCartItems } = useContext(CartContext);
     const [cart, setCartProducts] = useState([]);
     const [loader, setLoader] = useState(true);
     const token = localStorage.getItem('userToken');
@@ -40,7 +42,6 @@ export default function Order() {
     const getCoupons = async () => {
         const all = await axios.get(`/coupon`, { headers: { Authorization: `Tariq__${token}` } });
         setcoupon(all.coupons);
-        console.log(all);
     }
     useEffect(() => {
         getCoupons();
@@ -71,7 +72,9 @@ export default function Order() {
                 address: '',
                 phone: '',
             });
+            
             getCart();
+            setCartItems(0);
             toast.success('order done successfully', {
                 position: "top-right",
                 autoClose: 5000,
@@ -85,7 +88,6 @@ export default function Order() {
             });
             
         } catch (error) {
-            console.log(error);
             toast.error(error.message, {
                 position: "top-right",
                 autoClose: 5000,

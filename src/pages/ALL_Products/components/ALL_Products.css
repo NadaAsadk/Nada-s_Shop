@@ -28,14 +28,19 @@
     border-radius: 10px;
 }
 .product h2{
-    color: rgb(194, 94, 128);
-    text-align: center;
-    font-weight: 700;
-    font-size: medium;
+  color: rgb(194, 94, 128);
+  text-align: center;
+  font-weight: 600;
+  font-size: medium;
+}
+.allProducts .product button span{
+  color: white;
 }
 Link{
     text-decoration: none;
   }
+
+
 @media screen and (max-width:1500px) {
     .product{
         
