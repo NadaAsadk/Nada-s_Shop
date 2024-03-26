@@ -12,7 +12,7 @@ p,h1,h2,h4,span,a,link,button,label{
 
 
 .nav-link.active{
-    border-bottom: 3px solid palevioletred;
+    border-bottom: 3px solid #01B5B0;
     width:fit-content;
     font-weight: 700;
     transition: 0s;

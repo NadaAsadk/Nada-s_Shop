@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Navbar from '../../../components/Navbar/Navbar';
 import axios from 'axios';
 import './Products.css'
@@ -6,8 +6,10 @@ import Loader from '../../../components/Loader/Loader';
 import { NavLink } from 'react-router-dom';
 import { FaCartPlus } from "react-icons/fa";
 import { Bounce, toast } from 'react-toastify';
+import { CartContext } from '../../../context/CartItems';
 
 export default function Products() {
+    const {setCartItems} = useContext(CartContext);
     const [error, setError] = useState('');
     const [loader, setLoader] = useState(true);
     const URL = new URLSearchParams(window.location.search);
@@ -46,7 +48,8 @@ export default function Products() {
                         Authorization: `Tariq__${token}`
                     }
                 });
-                console.log(data);
+                console.log(data.cart.products.length);
+                setCartItems(data.cart.products.length);
                 toast.success('added one item to the cart', {
                     position: "top-right",
                     autoClose: 5000,

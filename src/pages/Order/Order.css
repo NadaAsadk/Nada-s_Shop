@@ -2,6 +2,7 @@
 html,
 body {
   position: relative;
+  width:100%;
 }
 .mainOrder{
   height: fit-content;

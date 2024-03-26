@@ -33,6 +33,7 @@ export default function Product() {
             setImages(data.product.subImages);
             setReviews(data.product.reviews);
 
+            console.log(data.product);
         } catch (error) {
             console.log(error);
         } finally {

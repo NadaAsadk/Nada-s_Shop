@@ -62,6 +62,9 @@
 .all .subImages img:hover,.all .oneproduct .imagess img:hover{
     transform: scale(1.2);
 }
+.all .oneproduct .subImages img:hover{
+    transform: scale(1.7);
+}
 .oneproduct h2,.oneproduct h4{
     background-color:transparent;
     font-weight: 700;
