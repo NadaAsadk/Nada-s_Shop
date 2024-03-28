@@ -36,15 +36,14 @@ export default function Signin() {
     } catch (error) {
       setErrors(error.errors);
       setLoader(false);
-      return false;
+      return error.errors;
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoader(true);
-    if (await validateData()) {
-
+    
       try {
         const { data } = await axios.post(`/auth/signin`, {
           email: user.email,
@@ -54,8 +53,6 @@ export default function Signin() {
           email: '',
           password: '',
         });
-
-        setErrors([]);
         toast.success('Sign in successfully', {
           position: "top-right",
           autoClose: 5000,
@@ -72,6 +69,7 @@ export default function Signin() {
         navigate('/');
 
       } catch (error) {
+        console.log(error);
         toast.error(error.response.data.message, {
           position: "top-right",
           autoClose: 5000,
@@ -86,8 +84,8 @@ export default function Signin() {
       } finally {
         setLoader(false);
       }
+    
 
-    }
 
   };
 

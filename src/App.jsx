@@ -4,7 +4,7 @@ import Home from './pages/Home/components/Home';
 import Categories from './pages/Categories/components/Categories';
 import Signin from './pages/Signin/components/Signin';
 import Register from './pages/Register/components/Register';
-import {createBrowserRouter,RouterProvider,} from "react-router-dom";
+import { createBrowserRouter, RouterProvider, } from "react-router-dom";
 import NotFound from './pages/NotFound/NotFound';
 import Products from './pages/Products/components/Products';
 import ALL_Products from './pages/ALL_Products/components/ALL_Products';
@@ -23,68 +23,78 @@ import CartContextProvider from './context/CartItems';
 
 
 export default function App() {
-  const [userName,setUserName] = useState('nada');
+  const [userName, setUserName] = useState('nada');
   const router = createBrowserRouter([
     {
       path: "/",
       element: <Root />,
       children: [
         {
-          path:'/',
-          element:<Home />,
+          path: '/',
+          element: <Home />,
         },
         {
-          path:'/Categories',
-          element:<Categories />,
-        },
-        {
-          path:'/Signin',
-          element:<Signin />,
-        },
-        {
-          path:'/Cart',
-          element:<Cart />,
-        },
-        {
-          path:'/Register',
-          element:
-          <Register />,
-        },
-        {
-          path:'/Profile',
-          element:
-          <Profile />,
-        },
-        {
-          path:'/order',
-          element:
-          <Order />,
-        },
-        {
-          path:'/forgotPassword',
-          element:<ForgotPassword />,
-        },
-        {
-          path:'/resetPassword',
-          element:<ResetPassword />,
-        },
-        {
-          path:'/Products',
-          element:
+          path: '/Categories',
+          element: 
           <ProtectedRoutes>
-            <ALL_Products />
-          </ProtectedRoutes>
+          <Categories />
+          </ProtectedRoutes>,
+        },
+        {
+          path: '/Signin',
+          element: <Signin />,
+        },
+        {
+          path: '/Cart',
+          element: <Cart />,
+        },
+        {
+          path: '/Register',
+          element:
+            <Register />,
+        },
+        {
+          path: '/Profile',
+          element:
+            <ProtectedRoutes>
+              <Profile />
+            </ProtectedRoutes>,
+        },
+        {
+          path: '/order',
+          element:
+            <ProtectedRoutes>
+              <Order />
+            </ProtectedRoutes>,
+        },
+        {
+          path: '/forgotPassword',
+          element: <ForgotPassword />,
+        },
+        {
+          path: '/resetPassword',
+          element: <ResetPassword />,
+        },
+        {
+          path: '/Products',
+          element:
+            <ProtectedRoutes>
+              <ALL_Products />
+            </ProtectedRoutes>
           ,
-        },{
+        }, {
           path: "/products/category/",
-          element: <Products />,
-        },{
+          element:
+            <ProtectedRoutes>
+              <Products />
+            </ProtectedRoutes>,
+        }, {
           path: "/productsdetails",
           element: <Product />,
         },
         {
-          path:'*',
-          element:<NotFound />,
+          path: '*',
+          element: <NotFound />,
         },
       ],
     }
@@ -92,12 +102,12 @@ export default function App() {
 
   return (
     <>
-    <ToastContainer/>
-    <UserContextProvider>
-      <CartContextProvider>
-      <RouterProvider router={router} />
-      </CartContextProvider>
-    </UserContextProvider>
+      <ToastContainer />
+      <UserContextProvider>
+        <CartContextProvider>
+          <RouterProvider router={router} />
+        </CartContextProvider>
+      </UserContextProvider>
     </>
   )
 }
