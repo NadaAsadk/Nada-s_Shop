@@ -30,7 +30,7 @@ const UserContextProvider = ({ children }) => {
     useEffect(() => {
         getUserData();
     }, [userToken])
-    return <UserContext.Provider value={{ setUserToken, userName, userImage}}>
+    return <UserContext.Provider value={{setUserToken, userName, userImage ,setUserName}}>
         {children}
     </UserContext.Provider>
 

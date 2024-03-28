@@ -8,7 +8,7 @@ import { CartContext } from '../../context/CartItems';
   
 export default function Navbar() {
   const [loader, setLoader] = useState(true);
-  const { setUserToken, userName, userImage } = useContext(UserContext);
+  const { setUserToken, userName, userImage ,setUserName} = useContext(UserContext);
   const {CartItems}  = useContext(CartContext);
  
   const token = localStorage.getItem('userToken');
@@ -19,7 +19,7 @@ export default function Navbar() {
     localStorage.removeItem('userToken');
     setUserToken(null);
     setUserName(null);
-    navigate('/SignIn');
+    navigate('/Signin');
   };
     
   

@@ -6,21 +6,19 @@ import { NavLink } from 'react-router-dom';
 import { FaCartPlus } from "react-icons/fa";
 import { Bounce, toast } from 'react-toastify';
 import { CartContext } from '../../../context/CartItems';
-import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
 
 export default function ALL_Products() {
-
-    const [loader, setLoader] = useState(true);
+  const [loader, setLoader] = useState(true);
     const [allproducts, setAllProducts] = useState([]);
     const { setCartItems } = useContext(CartContext);
-
+   
 
     const getProducts = async () => {
         try {
             const response = await axios.get(`/products?page=1&limit=10`);
             const data = response.data;
             setAllProducts(data.products);
+                    
         } catch (error) {
             console.log(error);
         } finally {
@@ -92,9 +90,9 @@ export default function ALL_Products() {
 
 
     };
-   
 
-
+    
+  
     return (
         <>
             <div className='allProducts'>
@@ -110,8 +108,10 @@ export default function ALL_Products() {
 
                     )
                 }
-                
+
             </div>
+           
+            
         </>
     )
 }
