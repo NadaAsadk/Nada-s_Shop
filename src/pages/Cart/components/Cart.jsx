@@ -12,6 +12,7 @@ import { NavLink } from 'react-router-dom';
 import Loader from '../../../components/Loader/Loader';
 import { CartContext } from '../../../context/CartItems';
 import { AiFillFire } from "react-icons/ai";
+import { FaCartArrowDown } from "react-icons/fa";
 
 export default function Cart() {
   const { setCartItems } = useContext(CartContext);
@@ -176,12 +177,12 @@ export default function Cart() {
       </div>
       <div className="cart">
         {(cartProducts.length > 0) ? cartProducts.map(product =>
-         
-            <div className='oneproduct' key={product.details._id}>
+
+          <div className='oneproduct' key={product.details._id}>
             <h2>{product.details.name}</h2>
-            {(product.details.discount>0)?<h2 className='discount'><AiFillFire /> discount: {product.details.discount} %</h2>:<></>}
+            {(product.details.discount > 0) ? <h2 className='discount'><AiFillFire /> discount: {product.details.discount} %</h2> : <></>}
             <NavLink to={`/productsdetails?product_id=${product.details._id}`} key={product._id} style={{ textDecoration: 'none' }}>
-            <img src={product.details.mainImage.secure_url} />
+              <img src={product.details.mainImage.secure_url} />
             </NavLink>
             <span>price: {product.details.price} $</span>
             <span>total: {product.details.finalPrice * product.quantity} $</span>
@@ -192,14 +193,18 @@ export default function Cart() {
                 : <button onClick={(product.quantity < 0) ? () => deleteProduct(product.details.id) : () => decraseQuantity(product.details.id)}><FaMinus color='palevioletred' /></button>}
             </div>
             <button onClick={() => deleteProduct(product.details.id)}><FaTrashAlt color='palevioletred' /></button>
-            
+
           </div>
 
 
         ) :
-          <>
-            <h2>No Products in Your Cart</h2>
-          </>}
+          <div className='emptyCart'>
+            <h2>Cart is empty! fill it now</h2>
+
+            <FaCartArrowDown />
+            <NavLink className="nav-link" aria-current="page" to='/products?page=1&limit=10'><h3>See products</h3></NavLink>
+
+          </div>}
 
       </div>
     </div>

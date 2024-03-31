@@ -140,6 +140,36 @@ button svg {
     justify-content: center;
 }
 
+.emptyCart{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+    gap:50px;
+    color:palevioletred;
+}
+
+.emptyCart svg{
+    width: 30%;
+    height: 30%;
+    fill:palevioletred;
+    transition: 1s;
+    animation-name: moving;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+.emptyCart p,h3,a{
+    text-align: center;
+}
+.emptyCart a{
+    text-decoration:underline
+}
+@keyframes moving {
+    from {transform:translateY(-20px)}
+    to {transform: translateY(20px);}
+  }
+
 @media screen and (max-width:1500px) {
     .cart .oneproduct {
 

@@ -46,7 +46,10 @@ export default function App() {
         },
         {
           path: '/Cart',
-          element: <Cart />,
+          element: 
+          <ProtectedRoutes>
+            <Cart />
+          </ProtectedRoutes>,
         },
         {
           path: '/Register',
@@ -90,7 +93,11 @@ export default function App() {
             </ProtectedRoutes>,
         }, {
           path: "/productsdetails",
-          element: <Product />,
+          element: 
+          
+          <ProtectedRoutes>
+            <Product />
+          </ProtectedRoutes>,
         },
         {
           path: '*',
