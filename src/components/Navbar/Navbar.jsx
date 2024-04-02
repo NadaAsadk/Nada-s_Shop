@@ -55,12 +55,11 @@ export default function Navbar() {
                   <li className="nav-item">
                     <NavLink className="nav-link" aria-current="page" to='/Cart'>Cart <span>{CartItems}</span></NavLink>
                   </li>
-                  <li className="nav-item">
-                  <NavLink className="nav-link" aria-current="page" to='/Profile'><img src={userImage}/> {userName} Profile</NavLink>                  
+                  <li className="profile nav-item">
+                  <NavLink className="nav-link" aria-current="page" to='/Profile'><img src={userImage}/> {userName} Profile</NavLink>   
+                  <button onClick={logOut}>Log Out</button>               
                   </li>
-                  <li className="nav-item">
-                    <button onClick={logOut}>Log Out</button>
-                  </li>
+                 
                 </ul>
 
               :
